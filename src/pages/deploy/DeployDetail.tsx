@@ -50,10 +50,11 @@ export default function DeployDetail() {
     }
 
     return (
-        <div className={"h-full flex"}>
-            <aside className="side flex flex-col bg-base-200 h-full w-80">
-                <ul className="menu p-4 text-base-content ">
-                    <div className={"divider font-bold font-mono m-0"}>项目列表</div>
+        <div className={"h-full"}>
+            {/*<h1>{params.dtype}</h1>*/}
+            <aside className="flex flex-col bg-transparent h-full w-60  border-r-2">
+                <ul className="menu p-2 text-base-content ">
+                    <div className={"divider mb-0"}>项目</div>
                     {
                         projects.map(project => {
                             return (
@@ -71,13 +72,27 @@ export default function DeployDetail() {
                                             setEditProject(project)
                                         }}>
                                         {/*{menuItem.icon}*/}
-                                        {project.cnTitle}
+                                        {"> " + project.cnTitle}
                                     </div>
                                 </li>
                             )
                         })
                     }
-
+                    <div className={"divider mb-0"}>配置</div>
+                    <li className="">
+                        <div
+                            className={"hover:text-black hover:bg-gray-300 font-bold text-l"}
+                            onClick={() => {
+                                // setTitle(menuItem.title);
+                                // 将manage profile改为manage/profile
+                                // navigate(menuItem.path)
+                                // // @ts-ignore
+                                // document.getElementById("menu-control").click()
+                            }}>
+                            {/*{menuItem.icon}*/}
+                            {"> Nginx配置"}
+                        </div>
+                    </li>
                 </ul>
             </aside>
             <div className={"content h-full flex-grow"}>
