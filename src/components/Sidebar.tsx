@@ -13,7 +13,7 @@ export default function Sidebar() {
     return (
         <div className="drawer-side flex-shrink-0  h-screen max-h-screen no-scrollbar">
             <label htmlFor="my-drawer-menu" className="drawer-overlay"></label>
-            <aside className="flex flex-col bg-base-200 h-full w-80 rounded-tr-2xl rounded-br-2xl">
+            <aside className="flex flex-col bg-base-200 h-full w-80 rounded-tr-xl rounded-br-xl">
                 {/*<div className="w-60">*/}
                 <ul className="menu p-4 text-base-content ">
                     {
