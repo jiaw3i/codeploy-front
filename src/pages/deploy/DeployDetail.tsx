@@ -50,8 +50,7 @@ export default function DeployDetail() {
     }
 
     return (
-        <div className={"h-full"}>
-            {/*<h1>{params.dtype}</h1>*/}
+        <div className={"h-full flex"}>
             <aside className="flex flex-col bg-transparent h-full w-60  border-r-2">
                 <ul className="menu p-2 text-base-content ">
                     <div className={"divider mb-0"}>项目</div>
@@ -63,11 +62,6 @@ export default function DeployDetail() {
                                         className={"hover:text-black hover:bg-gray-300 font-bold text-l " + (selectedId === project.id ? "active" : "")}
                                         key={project.title}
                                         onClick={() => {
-                                            // setTitle(menuItem.title);
-                                            // 将manage profile改为manage/profile
-                                            // navigate(menuItem.path)
-                                            // // @ts-ignore
-                                            // document.getElementById("menu-control").click()
                                             setSelectId(project.id ? project.id : 1)
                                             setEditProject(project)
                                         }}>
