@@ -3,8 +3,9 @@ import {useEffect, useState} from "react";
 
 import {useParams} from "react-router-dom";
 import {useForm} from "react-hook-form";
+import NginxConfig from "../../components/NginxConfig.tsx";
 
-type Project = {
+interface Project {
     id?: number,
     title: string,
     cnTitle: string,
@@ -15,6 +16,13 @@ type Project = {
     deployDir?: string,
 
 }
+
+interface Config {
+    id?: number,
+    title: string,
+    cnTitle: string,
+}
+
 export default function DeployDetail() {
     const params = useParams();
     // TODO: projects到时候从后端获取数据
@@ -41,6 +49,16 @@ export default function DeployDetail() {
             ...editProject
         }
     })
+    const [configs] = useState<Array<Config>>([
+        {
+            id: 1,
+            title: "nginx_config",
+            cnTitle: "Nginx配置",
+        }
+    ])
+
+
+    const [group, setGroup] = useState<string>("")
     useEffect(() => {
         console.log(params.dtype)
     }, [])
@@ -59,11 +77,12 @@ export default function DeployDetail() {
                             return (
                                 <li className="" key={project.title}>
                                     <div
-                                        className={"hover:text-black hover:bg-gray-300 font-bold text-l " + (selectedId === project.id ? "active" : "")}
+                                        className={"hover:text-black hover:bg-gray-300 font-bold text-l " + ((group === "project" && selectedId === project.id) ? "active" : "")}
                                         key={project.title}
                                         onClick={() => {
                                             setSelectId(project.id ? project.id : 1)
                                             setEditProject(project)
+                                            setGroup("project")
                                         }}>
                                         {/*{menuItem.icon}*/}
                                         {"> " + project.cnTitle}
@@ -73,35 +92,49 @@ export default function DeployDetail() {
                         })
                     }
                     <div className={"divider mb-0"}>配置</div>
-                    <li className="">
-                        <div
-                            className={"hover:text-black hover:bg-gray-300 font-bold text-l"}
-                            onClick={() => {
-                                // setTitle(menuItem.title);
-                                // 将manage profile改为manage/profile
-                                // navigate(menuItem.path)
-                                // // @ts-ignore
-                                // document.getElementById("menu-control").click()
-                            }}>
-                            {/*{menuItem.icon}*/}
-                            {"> Nginx配置"}
-                        </div>
-                    </li>
+
+                    {
+                        configs.map(config => {
+                            return (
+                                <li className="" key={config.id}>
+                                    <div
+                                        className={"hover:text-black hover:bg-gray-300 font-bold text-l " + ((group === "config" && selectedId === config.id) ? "active" : "")}
+                                        onClick={() => {
+                                            // setTitle(menuItem.title);
+                                            // 将manage profile改为manage/profile
+                                            // navigate(menuItem.path)
+                                            // // @ts-ignore
+                                            // document.getElementById("menu-control").click()
+                                            setSelectId(config.id ? config.id : 1)
+                                            setGroup("config")
+                                        }}>
+                                        {/*{menuItem.icon}*/}
+                                        {"> Nginx配置"}
+                                    </div>
+                                </li>
+                            )
+                        })
+                    }
                 </ul>
             </aside>
-            <div className={"content h-full flex-grow"}>
-                <div className={"flex flex-col h-full w-full items-center"}>
-                    <form onSubmit={handleSubmit(doSubmit)}>
-                        <div className="form-control w-full max-w-xs">
-                            <label className="label">
-                                <span className="label-text">项目名称</span>
-                            </label>
-                            <input type="text" placeholder="" {...register("title", {required: true})}
-                                   className="input input-bordered w-full max-w-xs"/>
-                        </div>
-                    </form>
-                </div>
-            </div>
+
+            {
+                group === "project"  ? <div className={"content h-full flex-grow"}>
+                    <div className={"flex flex-col h-full w-full items-center"}>
+                        <form onSubmit={handleSubmit(doSubmit)}>
+                            <div className="form-control w-full max-w-xs">
+                                <label className="label">
+                                    <span className="label-text">项目名称</span>
+                                </label>
+                                <input type="text" placeholder="" {...register("title", {required: true})}
+                                       className="input input-bordered w-full max-w-xs"/>
+                            </div>
+                        </form>
+                    </div>
+                </div> : <NginxConfig/>
+            }
+
+
         </div>
     )
 }
