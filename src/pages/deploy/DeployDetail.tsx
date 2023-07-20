@@ -71,7 +71,7 @@ export default function DeployDetail() {
         <div className={"h-full flex"}>
             <aside className="flex flex-col bg-transparent h-full w-60  border-r-2">
                 <ul className="menu p-2 text-base-content ">
-                    <div className={"divider mb-0"}>项目</div>
+                    <div className={"divider mb-1"}>项目</div>
                     {
                         projects.map(project => {
                             return (
@@ -91,7 +91,7 @@ export default function DeployDetail() {
                             )
                         })
                     }
-                    <div className={"divider mb-0"}>配置</div>
+                    <div className={"divider mb-1"}>配置</div>
 
                     {
                         configs.map(config => {
@@ -119,19 +119,20 @@ export default function DeployDetail() {
             </aside>
 
             {
-                group === "project"  ? <div className={"content h-full flex-grow"}>
-                    <div className={"flex flex-col h-full w-full items-center"}>
-                        <form onSubmit={handleSubmit(doSubmit)}>
-                            <div className="form-control w-full max-w-xs">
-                                <label className="label">
-                                    <span className="label-text">项目名称</span>
-                                </label>
-                                <input type="text" placeholder="" {...register("title", {required: true})}
-                                       className="input input-bordered w-full max-w-xs"/>
-                            </div>
-                        </form>
-                    </div>
-                </div> : <NginxConfig/>
+                group === "project" ?
+                    <div className={"content h-full flex-grow"}>
+                        <div className={"flex flex-col h-full w-full items-center"}>
+                            <form onSubmit={handleSubmit(doSubmit)}>
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">项目名称</span>
+                                    </label>
+                                    <input type="text" placeholder="" {...register("title", {required: true})}
+                                           className="input input-bordered w-full max-w-xs"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div> : <NginxConfig/>
             }
 
 

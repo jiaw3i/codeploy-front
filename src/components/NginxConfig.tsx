@@ -62,9 +62,9 @@ export default function NginxConfig() {
     }
 
     return (
-        <div className={"h-full w-full p-10 justify-center"}>
+        <div className={"h-full flex-grow p-10 justify-center"}>
             <div className="flex flex-col w-full h-full items-center">
-                <table className={"table w-3/5 "}>
+                <table className={"table w-4/5 "}>
                     <thead>
                     <tr className={"font-mono font-bold text-sm"}>
                         <th>ID</th>
