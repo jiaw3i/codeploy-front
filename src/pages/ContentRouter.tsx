@@ -1,7 +1,8 @@
 import {Route, Routes} from "react-router-dom";
-import Deploy from "./deploy/Deploy.tsx";
+// import Deploy from "./deploy/Deploy.tsx";
 import Package from "../components/Package.tsx";
 import DeployDetail from "./deploy/DeployDetail.tsx";
+import Deploy from "./deploy/Deploy.tsx";
 
 export default function ContentRouter() {
     return (

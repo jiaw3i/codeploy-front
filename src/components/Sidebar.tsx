@@ -1,7 +1,7 @@
 // import Footer from "./Footer.tsx";
 import {useNavigate} from "react-router-dom";
 import {NavigateFunction} from "react-router/dist/lib/hooks";
-import {MenusData} from "../data/menus.tsx";
+import {MenusData} from "@/data/menus.tsx";
 
 
 export default function Sidebar() {
