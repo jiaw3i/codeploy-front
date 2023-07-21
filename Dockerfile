@@ -13,6 +13,5 @@ RUN npm install --registry=https://registry.npm.taobao.org
 COPY . .
 RUN npm run build
 
-
-FROM nginx
+FROM nginx:1.25.1
 COPY --from=builder /app/dist /usr/share/nginx/html
